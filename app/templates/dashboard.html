@@ -9,6 +9,22 @@
 			margin: 40px;
 		}
 
+		h1 {
+			margin-bottom: 10px;
+		}
+
+		.metrics {
+			display: flex;
+			gap: 40px;
+			margin-bottom: 20px;
+		}
+
+		.card {
+			padding: 15px;
+			border: 1px solid #ddd;
+			border-radius: 8px;
+		}
+
 		table {
 			border-collapse: collapse;
 			width: 100%;
@@ -16,8 +32,9 @@
 
 		th,
 		td {
-			border: 1px solid #ccc;
+			border: 1px solid #ddd;
 			padding: 8px;
+			font-size: 12px;
 		}
 
 		th {
@@ -28,24 +45,29 @@
 
 <body>
 
-	<h1>Mini-PriceLabs Dashboard</h1>
+	<h1>Mini PriceLabs</h1>
+
+	<div class="metrics">
+		<div class="card"><b>Ingreso esperado total:</b><br>${{ total_revenue }}</div>
+		<div class="card"><b>Ocupación promedio:</b><br>{{ avg_occupancy }}</div>
+		<div class="card"><b>Precio promedio:</b><br>{{ avg_price }}</div>
+	</div>
 
 	<table>
 		<tr>
 			<th>Propiedad</th>
 			<th>Fecha</th>
-			<th>Precio recomendado</th>
-			<th>Precio mercado</th>
+			<th>Precio óptimo</th>
+			<th>Ocupación</th>
 			<th>Ingreso esperado</th>
 		</tr>
-
 		{% for r in rows %}
 		<tr>
-			<td>{{ r[0] }}</td>
-			<td>{{ r[1] }}</td>
-			<td>${{ r[2] }}</td>
-			<td>${{ r[3] }}</td>
-			<td>${{ r[4] }}</td>
+			<td>{{ r.property }}</td>
+			<td>{{ r.date.date() }}</td>
+			<td>{{ r.optimal_price }} {{ r.currency }}</td>
+			<td>{{ r.expected_occupancy }}</td>
+			<td>{{ r.expected_revenue }}</td>
 		</tr>
 		{% endfor %}
 	</table>
