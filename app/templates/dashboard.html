@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>Mini PriceLabs Dashboard</title>
+	<style>
+		body {
+			font-family: Arial;
+			margin: 40px;
+		}
+
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		th,
+		td {
+			border: 1px solid #ccc;
+			padding: 8px;
+		}
+
+		th {
+			background: #f4f4f4;
+		}
+	</style>
+</head>
+
+<body>
+
+	<h1>Mini-PriceLabs Dashboard</h1>
+
+	<table>
+		<tr>
+			<th>Propiedad</th>
+			<th>Fecha</th>
+			<th>Precio recomendado</th>
+			<th>Precio mercado</th>
+			<th>Ingreso esperado</th>
+		</tr>
+
+		{% for r in rows %}
+		<tr>
+			<td>{{ r[0] }}</td>
+			<td>{{ r[1] }}</td>
+			<td>${{ r[2] }}</td>
+			<td>${{ r[3] }}</td>
+			<td>${{ r[4] }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+
+</body>
+
+</html>
