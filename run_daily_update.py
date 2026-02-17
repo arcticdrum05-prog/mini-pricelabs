@@ -1,5 +1,6 @@
 import subprocess
 import sys
+import time
 
 scripts = [
     "market_calendar.py",
@@ -9,12 +10,16 @@ scripts = [
     "optimize_prices.py",
 ]
 
-for script in scripts:
-    print(f"▶ Ejecutando {script}...")
-    result = subprocess.run([sys.executable, script])
+while True:
+    print("🚀 Iniciando actualización diaria...")
 
-    if result.returncode != 0:
-        print(f"❌ Error en {script}")
-        sys.exit(1)
+    for script in scripts:
+        print(f"▶ Ejecutando {script}...")
+        result = subprocess.run([sys.executable, script])
 
-print("✅ Actualización diaria completada")
+        if result.returncode != 0:
+            print(f"❌ Error en {script}")
+            sys.exit(1)
+
+    print("✅ Actualización completada. Esperando 24h...")
+    time.sleep(60 * 60 * 24)  # 24 horas
